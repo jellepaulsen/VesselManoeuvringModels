@@ -18,6 +18,7 @@ class SemiempiricalRudderSystemCovered(EquationSubSystem):
         ship: ModularVesselSimulator,
         create_jacobians=True,
         in_propeller_race=True,
+        use_manual_lift_slope=False,
         suffix="port",
     ):
         self.suffix = suffix
@@ -66,6 +67,10 @@ class SemiempiricalRudderSystemCovered(EquationSubSystem):
 
         eqs_rudder = [eq.subs(renames) for eq in eqs_rudder]
 
+        if use_manual_lift_slope:
+            a_0 = sp.symbols("a_0") 
+            eqs_rudder = [eq for eq in eqs_rudder if a_0!=eq.lhs]  # Exclude the lift slope a_0 equation
+                    
         if len(suffix) > 0:
             # Adding a suffix to distinguish between port and starboard rudder
             subs = {eq.lhs: f"{eq.lhs}{suffix_str}" for eq in eqs_rudder}

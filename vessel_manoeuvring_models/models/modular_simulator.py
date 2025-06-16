@@ -35,6 +35,7 @@ from numpy import (
     sign,
 )
 import sympy as sp
+from scipy.stats import multivariate_normal
 
 p = df_parameters["symbol"]
 subs_simpler = {value: key for key, value in p.items()}
@@ -1245,6 +1246,20 @@ class ModularVesselSimulator:
             added_masses[key] = value*denominator
 
         return added_masses
+    
+    def alternative_realizations(self, size=100):
+        assert hasattr(self,'cov'), "The model has no covariance matrix '.cov'"
+        
+        means = pd.Series(self.parameters)
+        means = means[self.cov.index].copy()
+        
+        rv = multivariate_normal(mean=means, cov=self.cov)
+        
+        df_variations = pd.DataFrame(data=rv.rvs(size=size), columns=self.cov.index)
+        
+        return df_variations
+        
+        
 
 def calculate_score(
     df_force: pd.DataFrame, df_force_predicted: pd.DataFrame, dofs=["X_D", "Y_D", "N_D"]

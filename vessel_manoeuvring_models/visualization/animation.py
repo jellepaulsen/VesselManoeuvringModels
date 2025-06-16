@@ -1,4 +1,4 @@
-from .plot import track_plot
+from .plot import track_plot, track_plots
 import numpy as np
 import matplotlib.pyplot as plt
 from tqdm import tqdm
@@ -103,7 +103,7 @@ def track_plot_anim(
             ax.set_xticks([])
             ax.set_xticklabels([])
 
-            dynamic_zoom            
+           
             
             if not dynamic_zoom:
                 ax.plot(xlim,ylim,'.w')
@@ -113,3 +113,4 @@ def track_plot_anim(
             writer.grab_frame()
 
             ax.clear()
+            

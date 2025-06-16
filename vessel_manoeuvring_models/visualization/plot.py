@@ -377,6 +377,10 @@ def plot_ship(x, y, psi, ax, lpp, beam, color="y", alpha=0.1, outline=False, del
         if 'style' in kwargs:
             kwargs=kwargs.copy()
             kwargs.pop('style')
+            
+        if 'label' in kwargs:
+            kwargs=kwargs.copy()
+            kwargs.pop('label')
         
         ax.plot(x, y, outline_color, alpha=outline_alpha, **kwargs)
         ax.fill(x, y, color, alpha=alpha, **kwargs)
