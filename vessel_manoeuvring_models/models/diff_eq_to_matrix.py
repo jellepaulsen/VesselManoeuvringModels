@@ -241,12 +241,16 @@ class DiffEqToMatrix:
         # equation = equation.subs(excludes)
 
         ## Extract the coefficients (based on the base features)
+        
         subs = [(feature, 1) for feature in self.base_features]
         parts = equation.rhs.subs(subs)
+        print(f"parts: {parts}")
+        
         if isinstance(parts, sp.Symbol):
             coefficients = [parts]  # If there is only one coefficient
         else:
             coefficients = [coeff for coeff in parts.args]
+            print([type(coeff) for coeff in parts.args])
         check_coefficients(coefficients)
 
         ## Find the feature expression that is associated with each coefficient,
