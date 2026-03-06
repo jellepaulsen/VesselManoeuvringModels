@@ -292,14 +292,17 @@ def expression_to_python_method(
     expression, function_name: str, substitute_functions=False
 ):
     function_name = ok_function_name(function_name)
+    namespace = {} # dict to correctly write the function
     exec(
         expression_to_python_code(
             expression=expression,
             function_name=function_name,
             substitute_functions=substitute_functions,
-        )
+        ),
+        namespace
     )
-    return locals()[function_name]
+    # return locals()[function_name]
+    return namespace[function_name]
 
 
 def equation_to_python_method(eq, substitute_functions=False, name=None):

@@ -12,6 +12,7 @@ from vessel_manoeuvring_models.substitute_dynamic_symbols import (
 from dataclasses import dataclass, field
 import matplotlib.pyplot as plt
 
+"""init instance with empty dict for params and ship_params"""
 
 @dataclass
 class Model:
@@ -29,14 +30,14 @@ class ExtendedKalmanFilterExample(ExtendedKalmanFilter):
         measurement_columns=["x"],
         var_x=2,
         var_x1d_Q=0.3,
-        noise_amplification=1,
+        noise_amplification=2,
     ):
         """_summary_
 
         Args:
         model (ModularVesselSimulator): the predictor model
         B : np.ndarray [n,m], Control input model
-        H : np.ndarray [p,n] or lambda function!, Ovservation model
+        H : np.ndarray [p,n] or lambda function!, Observation model
             observation model
         Q : np.ndarray [n,n]
             process noise
@@ -107,10 +108,10 @@ class ExtendedKalmanFilterExample(ExtendedKalmanFilter):
     def create_predictor_and_transition_matrix(self):
 
         x, x1d, g = symbols("x,\dot{x},g")
-        states = [x, x1d, g]
+        states = [x, x1d, g]                # statevektor of a deskrete timestep
         f_ = ImmutableDenseMatrix([x1d, -g, 0])
 
-        jac = f_.jacobian(states)
+        jac = f_.jacobian(states)           # Matrix with partial derivatives of f_ with respect to the the states
         h = symbols("h")  # Time step
         Phi = sp.eye(len(states), len(states)) + jac * h
 
@@ -219,3 +220,12 @@ class ExtendedKalmanFilterExample(ExtendedKalmanFilter):
         ax.plot(result.t, result.x_hat[1, :], "r-")
         ax.set_ylabel(r"$\dot{x}$")
         ax.set_xlabel("Time [s]")
+
+
+test = ExtendedKalmanFilterExample()
+test.create_predictor_and_transition_matrix()
+data, data_true = test.generate_data()
+result = test.filter(data=data)
+test.plot(data=data, result=result, data_true=data_true)
+plt.show()
+   

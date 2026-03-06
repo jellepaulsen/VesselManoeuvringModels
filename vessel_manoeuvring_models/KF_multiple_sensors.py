@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
-from numpy.linalg.linalg import inv, pinv
+# from numpy.linalg.linalg import inv, pinv
+from numpy.linalg import inv, pinv
 import pandas as pd
 from scipy.interpolate import interp1d
 from vessel_manoeuvring_models.angles import smallest_signed_angle

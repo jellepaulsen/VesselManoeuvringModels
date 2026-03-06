@@ -55,3 +55,7 @@ df_parameters.loc["Nvdeltadelta", "prime"] = 0.0
 
 ps = prime_system.PrimeSystem(**ship_parameters)  # model
 ship_parameters_prime = ps.prime(ship_parameters)
+
+# print(f"ship_parameters: \n {ship_parameters} ")
+# print(f"df_parameters: \n {df_parameters} ")
+print(ps)

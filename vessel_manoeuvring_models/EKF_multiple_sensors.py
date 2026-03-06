@@ -4,7 +4,8 @@ from vessel_manoeuvring_models.KF_multiple_sensors import KalmanFilter, FilterRe
 from typing import AnyStr, Callable
 from vessel_manoeuvring_models.models.modular_simulator import ModularVesselSimulator
 from vessel_manoeuvring_models.angles import smallest_signed_angle
-from numpy.linalg.linalg import inv, pinv
+from numpy.linalg import inv, pinv
+# from numpy.linalg.linalg import inv, pinv
 from math import factorial
 
 import logging
@@ -111,17 +112,28 @@ class ExtendedKalmanFilter(KalmanFilter):
         except Exception as e:
             log.error(e)
             calculation = {}
-        
-        Phi = self.lambda_Phi(
-            **states_dict,
-            **input_dict,
-            **control,
-            **self.model.parameters,
-            **self.model.ship_parameters,
-            **calculation,
-            h=h,
-            U0=self.model.U0
-        )
+        try:
+            Phi = self.lambda_Phi(
+                **states_dict,
+                **input_dict,
+                **control,
+                **self.model.parameters,
+                **self.model.ship_parameters,
+                **calculation,
+                h=h,
+                U0=self.model.U0
+            )
+        except:
+            Phi = self.lambda_Phi(
+                **states_dict,
+                **input_dict,
+                **control,
+                **self.model.parameters,
+                **self.model.ship_parameters,
+                **calculation,
+                h=h,
+                U0=0
+            )
 
         return Phi
 
@@ -139,17 +151,28 @@ class ExtendedKalmanFilter(KalmanFilter):
         except Exception as e:
             log.error(e)
             calculation = {}
-            
-        f = self.lambda_f(
-            **states_dict,
-            **input_dict,
-            **control,
-            **self.model.parameters,
-            **self.model.ship_parameters,
-            **calculation,
-            h=h,
-            U0=self.model.U0,
-        )
+        try:   
+            f = self.lambda_f(
+                **states_dict,
+                **input_dict,
+                **control,
+                **self.model.parameters,
+                **self.model.ship_parameters,
+                **calculation,
+                h=h,
+                U0=self.model.U0,
+            )
+        except:
+            f = self.lambda_f(
+                **states_dict,
+                **input_dict,
+                **control,
+                **self.model.parameters,
+                **self.model.ship_parameters,
+                **calculation,
+                h=h,
+                U0=0,
+            )
 
         x_prd = x_hat + f * h
         #n = 1

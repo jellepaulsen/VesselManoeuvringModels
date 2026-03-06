@@ -2,6 +2,9 @@
     "python.testing.pytestArgs": [
         "tests"
     ],
+    "python.defaultInterpreterPath": "/home/sim/Documents/Python/miniconda3/envs/wPCC/bin/python",
     "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
+    "python.testing.pytestEnabled": true,
+    "python-envs.defaultEnvManager": "ms-python.python:conda",
+    "python-envs.defaultPackageManager": "ms-python.python:conda",
 }

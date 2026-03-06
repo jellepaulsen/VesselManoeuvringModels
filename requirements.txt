@@ -2,7 +2,7 @@
 -e .
 
 # external requirements
-#click
+# click
 Sphinx
 coverage
 python-dotenv>=0.5.1
@@ -11,7 +11,7 @@ nbstripout
 numpy
 pandas
 matplotlib
-sklearn
+# sklearnma
 seaborn
 scipy
 jupyterlab
@@ -21,3 +21,7 @@ ipywidgets>=7.5
 jupyterlab-mathjax3
 statsmodels
 dill
+
+# missings
+papermill
+notebook

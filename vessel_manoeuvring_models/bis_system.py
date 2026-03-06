@@ -3,7 +3,7 @@ import quantities as pq
 
 
 class BisSystem:
-    """Class that handles conversion from and to bis system"""
+    """Class that handles conversion from and to bis system (Body-fixed Inertial System)"""
 
     def __init__(self, lpp, volume, g=9.81, rho=1000, units={}):
         self.lpp = lpp

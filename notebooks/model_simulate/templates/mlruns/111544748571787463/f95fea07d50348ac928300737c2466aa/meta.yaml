@@ -1,0 +1,14 @@
+artifact_uri: file:///home/sim/Documents/git_repos/VesselManoeuvringModels/notebooks/model_simulate/templates/mlruns/111544748571787463/f95fea07d50348ac928300737c2466aa/artifacts
+end_time: 1772721714849
+entry_point_name: ''
+experiment_id: '111544748571787463'
+lifecycle_stage: active
+run_id: f95fea07d50348ac928300737c2466aa
+run_name: '22770'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1772721714810
+status: 4
+tags: []
+user_id: sim
