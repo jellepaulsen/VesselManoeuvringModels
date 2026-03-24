@@ -11,7 +11,7 @@ nbstripout
 numpy
 pandas
 matplotlib
-sklearn
+# sklearn
 seaborn
 scipy
 jupyterlab
@@ -23,4 +23,4 @@ statsmodels
 dill
 
 
-pip install Sphinx coverage python-dotenv pytest nbstripout numpy pandas matplotlib sklearn seaborn scipy jupyterlab sympy plotly ipywidgets jupyterlab-mathjax3 statsmodels dill
+# pip install Sphinx coverage python-dotenv pytest nbstripout numpy pandas matplotlib sklearn seaborn scipy jupyterlab sympy plotly ipywidgets jupyterlab-mathjax3 statsmodels dill
