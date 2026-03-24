@@ -36,7 +36,7 @@ clean:
 
 ## Lint using flake8
 lint:
-	flake8 vessel_manoeuvring_models
+	$(PYTHON_INTERPRETER) -m flake8 vessel_manoeuvring_models
 
 ## Upload Data to S3
 sync_data_to_s3:

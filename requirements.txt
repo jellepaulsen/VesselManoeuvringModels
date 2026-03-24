@@ -21,7 +21,7 @@ ipywidgets>=7.5
 jupyterlab-mathjax3
 statsmodels
 dill
-
+mlflow
 # missings
 papermill
 notebook
